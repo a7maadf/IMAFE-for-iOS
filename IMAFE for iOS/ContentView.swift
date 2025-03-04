@@ -33,6 +33,13 @@ struct ContentView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
                 }
+                .onChange(of: selectedItem) {
+                    Task {
+                        if let data = try? await selectedItem?.loadTransferable(type: Data.self) {
+                            selectedImage = UIImage(data: data)
+                        }
+                    }
+                }
                 
                 Text("*click on the image to change it")
                     .font(.custom("SF Pro Italic", size: 10))
@@ -85,13 +92,7 @@ struct ContentView: View {
             
         }
         .ignoresSafeArea()
-        .onChange(of: selectedItem) {
-            Task {
-                if let data = try? await selectedItem?.loadTransferable(type: Data.self) {
-                    selectedImage = UIImage(data: data)
-                }
-            }
-        }
+        
         
     }
 }
