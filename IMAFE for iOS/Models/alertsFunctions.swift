@@ -19,3 +19,14 @@ func showErrorAlert(message: String) {
         topVC.present(alert, animated: true, completion: nil)
     }
 }
+
+
+func showSuccessAlert(message: String) {
+    let alert = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    
+    // Make sure this runs on a view controller
+    if let topVC = UIApplication.shared.windows.first?.rootViewController {
+        topVC.present(alert, animated: true, completion: nil)
+    }
+}

@@ -113,11 +113,44 @@ struct ContentView: View {
                             showErrorAlert(message: "Enter a password to encrypt")
                         }
                         else {
-                            if let imageData = encryptImage(image: selectedUIImage!, text: secretText, password: passwordText),
-                               let image = UIImage(data: imageData) {  // Convert Data back to UIImage
-                                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil) // Save to Photos
+                            if let imageData = encryptImage(image: selectedUIImage!, text: secretText, password: passwordText) {
+                                // Save the raw data directly to a file in the Photos album
+                                
+                                // Create a temporary file URL
+                                let temporaryDirectory = FileManager.default.temporaryDirectory
+                                let temporaryFileURL = temporaryDirectory.appendingPathComponent(UUID().uuidString).appendingPathExtension("png")
+                                
+                                do {
+                                    // Write the data to the temporary file
+                                    try imageData.write(to: temporaryFileURL)
+                                    
+                                    // Use PHPhotoLibrary to save the file
+                                    PHPhotoLibrary.shared().performChanges({
+                                        // Create a request to save the image
+                                        PHAssetCreationRequest.forAsset().addResource(with: .photo, fileURL: temporaryFileURL, options: nil)
+                                    }, completionHandler: { success, error in
+                                        // Clean up the temporary file
+                                        try? FileManager.default.removeItem(at: temporaryFileURL)
+                                        
+                                        if success {
+                                            // Notify success on the main thread
+                                            DispatchQueue.main.async {
+                                                showSuccessAlert(message: "Encrypted image saved to your gallery successfully!")
+                                                secretText = ""
+                                                passwordText = ""
+                                            }
+                                        } else if let error = error {
+                                            // Notify error on the main thread
+                                            DispatchQueue.main.async {
+                                                showErrorAlert(message: "Failed to save image: \(error.localizedDescription)")
+                                            }
+                                        }
+                                    })
+                                } catch {
+                                    showErrorAlert(message: "Failed to write image data: \(error.localizedDescription)")
+                                }
                             } else {
-                                print("Failed to generate encrypted image.")
+                                showErrorAlert(message: ("Failed to generate encrypted image."))
                             }
                         }
                     }

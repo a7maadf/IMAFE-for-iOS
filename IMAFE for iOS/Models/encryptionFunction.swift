@@ -122,7 +122,7 @@ func extractAndDecryptText(from imageData: Data, password: String) -> String? {
     
     // Find the start marker in the image data
     guard let startRange = imageData.range(of: startMarkerData) else {
-        print("Error: Start marker not found in image data.")
+        showErrorAlert(message: "Could not find encrypted secret, are you sure you are using the correct image?")
         return nil
     }
     
