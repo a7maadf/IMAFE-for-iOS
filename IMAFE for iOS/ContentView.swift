@@ -11,6 +11,8 @@ import PhotosUI
 struct ContentView: View {
     @State private var selectedImage: UIImage?
     @State private var selectedItem: PhotosPickerItem?
+    @State private var secretText: String = "type your secret here..."
+    @State private var passwordText: String = "password"
     
     var body: some View {
         ZStack {
@@ -49,7 +51,7 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                TextEditor(text: .constant("type your secret here..."))
+                TextEditor(text: $secretText)
                     .background(Color(red: 0.47, green: 0.04, blue: 0.72))
                     .scrollContentBackground(.hidden)
                     .frame(height: 200)
@@ -58,21 +60,22 @@ struct ContentView: View {
                     .font(.custom("SF Pro Rounded", size: 15))
                 
                 
-                Text("Password")
-                    .font(.custom("SF Pro Rounded", size: 15))
-                    .foregroundColor(Color(red: 0.90, green: 0.54, blue: 0.99, opacity: 1.00))
-                    .frame(maxWidth: .infinity, alignment: .leading) // LtR alignment
+//                Text("Password")
+//                    .font(.custom("SF Pro Rounded", size: 15))
+//                    .foregroundColor(Color(red: 0.90, green: 0.54, blue: 0.99, opacity: 1.00))
+//                    .frame(maxWidth: .infinity, alignment: .leading) // LtR alignment
                 
                 
-                SecureField("Password....", text: .constant("password"))
+                SecureField("Enter your password here..", text: $passwordText)
                     .padding()
                     .background(Color(red: 0.47, green: 0.04, blue: 0.72))
                     .cornerRadius(10)
                     .foregroundColor(Color.white)
                     .font(.custom("SF Pro Rounded", size: 15))
                 
+                
                 Button("Save") {
-                    if let imageData = encryptImage(image: selectedImage!, text: "Hello, World!", password: "Hi") {
+                    if let imageData = encryptImage(image: selectedImage!, text: secretText, password: "Hi") {
                         let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("hidden_message_image.png")
                         
                         do {
