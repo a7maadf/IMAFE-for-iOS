@@ -11,8 +11,11 @@ import PhotosUI
 struct ContentView: View {
     @State private var selectedImage: UIImage?
     @State private var selectedItem: PhotosPickerItem?
-    @State private var secretText: String = "type your secret here..."
+    @State private var secretText: String = ""
     @State private var passwordText: String = "password"
+
+    
+    
     
     var body: some View {
         ZStack {
@@ -51,13 +54,29 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                TextEditor(text: $secretText)
-                    .background(Color(red: 0.47, green: 0.04, blue: 0.72))
-                    .scrollContentBackground(.hidden)
-                    .frame(height: 200)
-                    .cornerRadius(10)
-                    .foregroundColor(Color.white)
-                    .font(.custom("SF Pro Rounded", size: 15))
+                ZStack(alignment: .topLeading) {
+                            TextEditor(text: $secretText)
+                                .background(Color(red: 0.47, green: 0.04, blue: 0.72))
+                                .scrollContentBackground(.hidden)
+                                .frame(height: 200)
+                                .cornerRadius(10)
+                                .foregroundColor(Color.white)
+                                .font(.custom("SF Pro Rounded", size: 15))
+                            
+                            if secretText.isEmpty {
+                                Text("your secret goes here...")
+                                    .foregroundColor(Color.white.opacity(0.6))
+                                    .font(.custom("SF Pro Rounded", size: 15))
+                                    .padding(.horizontal, 8)
+                                    .padding(.top, 8)
+                                    .allowsHitTesting(false)
+                            }
+                        }
+                        .onTapGesture {
+                            UIApplication.shared.endEditing() // Call the function to dismiss keyboard
+                        }
+
+
                 
                 
 //                Text("Password")
@@ -72,10 +91,16 @@ struct ContentView: View {
                     .cornerRadius(10)
                     .foregroundColor(Color.white)
                     .font(.custom("SF Pro Rounded", size: 15))
+                    .onTapGesture {
+                        UIApplication.shared.endEditing() // Call the function to dismiss keyboard
+                            }
+                    
+
+
                 
                 
                 Button("Save") {
-                    if let imageData = encryptImage(image: selectedImage!, text: secretText, password: "Hi") {
+                    if let imageData = encryptImage(image: selectedImage!, text: secretText, password: passwordText) {
                         let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("hidden_message_image.png")
                         
                         do {
@@ -87,7 +112,7 @@ struct ContentView: View {
                         }
                         
                         
-                        if let extractedText = extractAndDecryptText(from: imageData, password: "Hi") {
+                        if let extractedText = extractAndDecryptText(from: imageData, password: passwordText) {
                             print("Decrypted text: \(extractedText)")
                         } else {
                             print("Failed to extract or decrypt text.")
@@ -108,15 +133,33 @@ struct ContentView: View {
             }
             
             .padding([.top, .leading, .trailing])
+            .keyboardResponsive()
             
                 
             
         }
         .ignoresSafeArea()
         
+        .onTapGesture {
+                    UIApplication.shared.endEditing() // Dismiss keyboard
+                }
+        
+
+        
         
     }
+        
 }
+
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
+
+
 
 #Preview {
     ContentView()
