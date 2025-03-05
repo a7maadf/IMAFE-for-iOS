@@ -11,7 +11,7 @@ import PhotosUI
 struct ContentView: View {
     @State private var selectedImage: UIImage?
     @State private var selectedItem: PhotosPickerItem?
-
+    
     var body: some View {
         ZStack {
             Color(red: 0.17, green: 0.00, blue: 0.34)
@@ -72,8 +72,26 @@ struct ContentView: View {
                     .font(.custom("SF Pro Rounded", size: 15))
                 
                 Button("Save") {
-                    print("Button pressed")
+                    if let imageData = encryptImage(image: selectedImage!, text: "Hello, World!", password: "Hi") {
+                        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("hidden_message_image.png")
+                        
+                        do {
+                            try imageData.write(to: tempURL) // Save file temporarily
+                            let activityVC = UIActivityViewController(activityItems: [tempURL], applicationActivities: nil)
+                            UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true)
+                        } catch {
+                            print("Error saving image: \(error)")
+                        }
+                        
+                        
+                        if let extractedText = extractAndDecryptText(from: imageData, password: "Hi") {
+                            print("Decrypted text: \(extractedText)")
+                        } else {
+                            print("Failed to extract or decrypt text.")
+                        }
+                    }
                 }
+                
                 .foregroundColor(Color.white)
                 .frame(width: 100, height: 50)
                 .background(Color(red: 0.47, green: 0.04, blue: 0.72))
