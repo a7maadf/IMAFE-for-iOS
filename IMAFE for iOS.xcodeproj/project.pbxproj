@@ -35,16 +35,6 @@
 			path = "IMAFE for iOS";
 			sourceTree = "<group>";
 		};
-		E07C6C332D7792A20008D7D0 /* IMAFE for iOSTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "IMAFE for iOSTests";
-			sourceTree = "<group>";
-		};
-		E07C6C3D2D7792A20008D7D0 /* IMAFE for iOSUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "IMAFE for iOSUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				E07C6C222D7792A10008D7D0 /* IMAFE for iOS */,
-				E07C6C332D7792A20008D7D0 /* IMAFE for iOSTests */,
-				E07C6C3D2D7792A20008D7D0 /* IMAFE for iOSUITests */,
 				E07C6C212D7792A10008D7D0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +118,6 @@
 			dependencies = (
 				E07C6C322D7792A20008D7D0 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				E07C6C332D7792A20008D7D0 /* IMAFE for iOSTests */,
-			);
 			name = "IMAFE for iOSTests";
 			packageProductDependencies = (
 			);
@@ -152,9 +137,6 @@
 			);
 			dependencies = (
 				E07C6C3C2D7792A20008D7D0 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				E07C6C3D2D7792A20008D7D0 /* IMAFE for iOSUITests */,
 			);
 			name = "IMAFE for iOSUITests";
 			packageProductDependencies = (
