@@ -24,9 +24,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E07C6C202D7792A10008D7D0 /* IMAFE for iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IMAFE for iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E07C6C302D7792A20008D7D0 /* IMAFE for iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IMAFE for iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E07C6C3A2D7792A20008D7D0 /* IMAFE for iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IMAFE for iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E07C6C202D7792A10008D7D0 /* IMAFE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMAFE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E07C6C302D7792A20008D7D0 /* IMAFETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IMAFETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E07C6C3A2D7792A20008D7D0 /* IMAFEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IMAFEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -73,9 +73,9 @@
 		E07C6C212D7792A10008D7D0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E07C6C202D7792A10008D7D0 /* IMAFE for iOS.app */,
-				E07C6C302D7792A20008D7D0 /* IMAFE for iOSTests.xctest */,
-				E07C6C3A2D7792A20008D7D0 /* IMAFE for iOSUITests.xctest */,
+				E07C6C202D7792A10008D7D0 /* IMAFE.app */,
+				E07C6C302D7792A20008D7D0 /* IMAFETests.xctest */,
+				E07C6C3A2D7792A20008D7D0 /* IMAFEUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,9 +83,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E07C6C1F2D7792A10008D7D0 /* IMAFE for iOS */ = {
+		E07C6C1F2D7792A10008D7D0 /* IMAFE */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E07C6C442D7792A20008D7D0 /* Build configuration list for PBXNativeTarget "IMAFE for iOS" */;
+			buildConfigurationList = E07C6C442D7792A20008D7D0 /* Build configuration list for PBXNativeTarget "IMAFE" */;
 			buildPhases = (
 				E07C6C1C2D7792A10008D7D0 /* Sources */,
 				E07C6C1D2D7792A10008D7D0 /* Frameworks */,
@@ -98,16 +98,16 @@
 			fileSystemSynchronizedGroups = (
 				E07C6C222D7792A10008D7D0 /* IMAFE for iOS */,
 			);
-			name = "IMAFE for iOS";
+			name = IMAFE;
 			packageProductDependencies = (
 			);
 			productName = "IMAFE for iOS";
-			productReference = E07C6C202D7792A10008D7D0 /* IMAFE for iOS.app */;
+			productReference = E07C6C202D7792A10008D7D0 /* IMAFE.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E07C6C2F2D7792A20008D7D0 /* IMAFE for iOSTests */ = {
+		E07C6C2F2D7792A20008D7D0 /* IMAFETests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E07C6C472D7792A20008D7D0 /* Build configuration list for PBXNativeTarget "IMAFE for iOSTests" */;
+			buildConfigurationList = E07C6C472D7792A20008D7D0 /* Build configuration list for PBXNativeTarget "IMAFETests" */;
 			buildPhases = (
 				E07C6C2C2D7792A20008D7D0 /* Sources */,
 				E07C6C2D2D7792A20008D7D0 /* Frameworks */,
@@ -118,16 +118,16 @@
 			dependencies = (
 				E07C6C322D7792A20008D7D0 /* PBXTargetDependency */,
 			);
-			name = "IMAFE for iOSTests";
+			name = IMAFETests;
 			packageProductDependencies = (
 			);
 			productName = "IMAFE for iOSTests";
-			productReference = E07C6C302D7792A20008D7D0 /* IMAFE for iOSTests.xctest */;
+			productReference = E07C6C302D7792A20008D7D0 /* IMAFETests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E07C6C392D7792A20008D7D0 /* IMAFE for iOSUITests */ = {
+		E07C6C392D7792A20008D7D0 /* IMAFEUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E07C6C4A2D7792A20008D7D0 /* Build configuration list for PBXNativeTarget "IMAFE for iOSUITests" */;
+			buildConfigurationList = E07C6C4A2D7792A20008D7D0 /* Build configuration list for PBXNativeTarget "IMAFEUITests" */;
 			buildPhases = (
 				E07C6C362D7792A20008D7D0 /* Sources */,
 				E07C6C372D7792A20008D7D0 /* Frameworks */,
@@ -138,11 +138,11 @@
 			dependencies = (
 				E07C6C3C2D7792A20008D7D0 /* PBXTargetDependency */,
 			);
-			name = "IMAFE for iOSUITests";
+			name = IMAFEUITests;
 			packageProductDependencies = (
 			);
 			productName = "IMAFE for iOSUITests";
-			productReference = E07C6C3A2D7792A20008D7D0 /* IMAFE for iOSUITests.xctest */;
+			productReference = E07C6C3A2D7792A20008D7D0 /* IMAFEUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -168,7 +168,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E07C6C1B2D7792A10008D7D0 /* Build configuration list for PBXProject "IMAFE for iOS" */;
+			buildConfigurationList = E07C6C1B2D7792A10008D7D0 /* Build configuration list for PBXProject "IMAFE" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -182,9 +182,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E07C6C1F2D7792A10008D7D0 /* IMAFE for iOS */,
-				E07C6C2F2D7792A20008D7D0 /* IMAFE for iOSTests */,
-				E07C6C392D7792A20008D7D0 /* IMAFE for iOSUITests */,
+				E07C6C1F2D7792A10008D7D0 /* IMAFE */,
+				E07C6C2F2D7792A20008D7D0 /* IMAFETests */,
+				E07C6C392D7792A20008D7D0 /* IMAFEUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -240,12 +240,12 @@
 /* Begin PBXTargetDependency section */
 		E07C6C322D7792A20008D7D0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E07C6C1F2D7792A10008D7D0 /* IMAFE for iOS */;
+			target = E07C6C1F2D7792A10008D7D0 /* IMAFE */;
 			targetProxy = E07C6C312D7792A20008D7D0 /* PBXContainerItemProxy */;
 		};
 		E07C6C3C2D7792A20008D7D0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E07C6C1F2D7792A10008D7D0 /* IMAFE for iOS */;
+			target = E07C6C1F2D7792A10008D7D0 /* IMAFE */;
 			targetProxy = E07C6C3B2D7792A20008D7D0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -455,7 +455,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IMAFE for iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IMAFE for iOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IMAFE.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IMAFE";
 			};
 			name = Debug;
 		};
@@ -474,7 +474,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IMAFE for iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IMAFE for iOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IMAFE.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IMAFE";
 			};
 			name = Release;
 		};
@@ -515,7 +515,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E07C6C1B2D7792A10008D7D0 /* Build configuration list for PBXProject "IMAFE for iOS" */ = {
+		E07C6C1B2D7792A10008D7D0 /* Build configuration list for PBXProject "IMAFE" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E07C6C422D7792A20008D7D0 /* Debug */,
@@ -524,7 +524,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E07C6C442D7792A20008D7D0 /* Build configuration list for PBXNativeTarget "IMAFE for iOS" */ = {
+		E07C6C442D7792A20008D7D0 /* Build configuration list for PBXNativeTarget "IMAFE" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E07C6C452D7792A20008D7D0 /* Debug */,
@@ -533,7 +533,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E07C6C472D7792A20008D7D0 /* Build configuration list for PBXNativeTarget "IMAFE for iOSTests" */ = {
+		E07C6C472D7792A20008D7D0 /* Build configuration list for PBXNativeTarget "IMAFETests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E07C6C482D7792A20008D7D0 /* Debug */,
@@ -542,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E07C6C4A2D7792A20008D7D0 /* Build configuration list for PBXNativeTarget "IMAFE for iOSUITests" */ = {
+		E07C6C4A2D7792A20008D7D0 /* Build configuration list for PBXNativeTarget "IMAFEUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E07C6C4B2D7792A20008D7D0 /* Debug */,

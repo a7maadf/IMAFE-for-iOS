@@ -12,8 +12,8 @@ import UIKit
 
 
 func encryptImage(image: UIImage, text: String, password: String) -> Data? {
-    let startMarker = "\n---added text start here---\n"
-    let endMarker = "\n---added text end here---\n"
+    let startMarker = "\n---encryption start here---\n"
+    let endMarker = "\n---encryption end here---\n"
     
     // Convert UIImage to PNG Data
     guard let imageData = image.pngData() else {
@@ -110,8 +110,8 @@ func encryptText(text: String, password: String) -> Data? {
 
 
 func extractAndDecryptText(from imageData: Data, password: String) -> String? {
-    let startMarker = "\n---added text start here---\n"
-    let endMarker = "\n---added text end here---\n"
+    let startMarker = "\n---encryption start here---\n"
+    let endMarker = "\n---encryption end here---\n"
     
     // Convert markers to Data
     guard let startMarkerData = startMarker.data(using: .utf8),

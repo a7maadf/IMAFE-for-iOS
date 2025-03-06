@@ -68,7 +68,7 @@ struct ContentView: View {
                         .font(.custom("SF Pro Rounded", size: 15))
                     
                     if secretText.isEmpty {
-                        Text("your secret goes here... (ONLY FILL DURING ENCRYPTION, DECRIPTED TEXT WILL BE DISPLAYED HERE)")
+                        Text("Enter your secret here only if encrypting. Leave this field empty when decrypting — the decrypted text will appear here.")
                             .foregroundColor(Color.white.opacity(0.6))
                             .font(.custom("SF Pro Rounded", size: 15))
                             .padding(.horizontal, 8)
@@ -98,6 +98,8 @@ struct ContentView: View {
                     .onTapGesture {
                         UIApplication.shared.endEditing() // Call the function to dismiss keyboard
                     }
+                
+                
                 
                 
                 
@@ -185,7 +187,10 @@ struct ContentView: View {
                     .font(.custom("SF Pro Rounded", size: 15))
                     .foregroundColor(Color(red: 0.90, green: 0.54, blue: 0.99, opacity: 1.00))
                 }
-                
+                Text("*Secured with AES-256 Encryption")
+                    .font(.custom("SF Pro Rounded", size: 10))
+                    .foregroundColor(Color(red: 0.90, green: 0.54, blue: 0.99, opacity: 1.00))
+                    .frame(maxWidth: .infinity, alignment: .center) // LtR alignment
                 
                 Spacer()
                 
