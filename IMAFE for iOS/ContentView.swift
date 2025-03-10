@@ -129,7 +129,7 @@ struct ContentView: View {
                                 // Stop animation ONLY if encryption has finished AND effect ran long enough
                                 if counter >= maxCount && encryptionFinished {
                                     timer.invalidate()
-                                    encryptionButtonText = "Done!" // Final message
+                                    encryptionButtonText = "Encrypt" // Final message
                                 }
                             }
                             
@@ -183,7 +183,7 @@ struct ContentView: View {
                                 // Stop effect only if it has run long enough
                                 if counter >= maxCount {
                                     timer.invalidate()
-                                    encryptionButtonText = "Done!"
+                                    encryptionButtonText = "Encrypt"
                                     secretText = ""
                                 }
                             }
