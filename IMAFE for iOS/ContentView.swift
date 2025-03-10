@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var selectedItem: PhotosPickerItem?
     @State private var secretText: String = ""
     @State private var passwordText: String = ""
+    @State private var encryptionButtonText: String = "Encrypt"
     
     
     
@@ -106,7 +107,7 @@ struct ContentView: View {
                 
                 
                 HStack {
-                    Button("Encrypt") {
+                    Button(encryptionButtonText) {
                         if selectedUIImage == nil {
                             showErrorAlert(message: "Choose an image to encrypt")
                         } else if secretText.isEmpty {
@@ -115,46 +116,82 @@ struct ContentView: View {
                             showErrorAlert(message: "Enter a password to encrypt")
                         }
                         else {
-                            if let imageData = encryptImage(image: selectedUIImage!, text: secretText, password: passwordText) {
-                                // Save the raw data directly to a file in the Photos album
+                            var counter = 0
+                            let maxCount = 60  // Effect should run for ~0.6 seconds
+                            var encryptionFinished = false
+                            
+                            // Start updating button text every 0.01 seconds
+                            let timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
+                                encryptionButtonText = showEncryption(ButtonTextVarName: encryptionButtonText) // Randomize text
+                                secretText = showEncryption(ButtonTextVarName: "auwegbiawegbaiwuegbawiuegbeiwugwieugbwaiugbiuwaebgfiwuabgaiuwebgiawuegbuiawegbiwuaebiuawebfgiuwaebgiauwbegiuwabgawiugawiugbiawuegbawiuegbawiugbawiugebwaieugbweagiuawbeguiwebgiwuabguiewbagiuewabgawiugwaieugbaewiugbwaeiugbwaeigbawuiegwaegawegwaegweagaweg")
+                                counter += 1
                                 
-                                // Create a temporary file URL
-                                let temporaryDirectory = FileManager.default.temporaryDirectory
-                                let temporaryFileURL = temporaryDirectory.appendingPathComponent(UUID().uuidString).appendingPathExtension("png")
-                                
-                                do {
-                                    // Write the data to the temporary file
-                                    try imageData.write(to: temporaryFileURL)
-                                    
-                                    // Use PHPhotoLibrary to save the file
-                                    PHPhotoLibrary.shared().performChanges({
-                                        // Create a request to save the image
-                                        PHAssetCreationRequest.forAsset().addResource(with: .photo, fileURL: temporaryFileURL, options: nil)
-                                    }, completionHandler: { success, error in
-                                        // Clean up the temporary file
-                                        try? FileManager.default.removeItem(at: temporaryFileURL)
-                                        
-                                        if success {
-                                            // Notify success on the main thread
-                                            DispatchQueue.main.async {
-                                                showSuccessAlert(message: "Encrypted image saved to your gallery successfully!")
-                                                secretText = ""
-                                                passwordText = ""
-                                            }
-                                        } else if let error = error {
-                                            // Notify error on the main thread
-                                            DispatchQueue.main.async {
-                                                showErrorAlert(message: "Failed to save image: \(error.localizedDescription)")
-                                            }
-                                        }
-                                    })
-                                } catch {
-                                    showErrorAlert(message: "Failed to write image data: \(error.localizedDescription)")
+                                // Stop animation ONLY if encryption has finished AND effect ran long enough
+                                if counter >= maxCount && encryptionFinished {
+                                    timer.invalidate()
+                                    encryptionButtonText = "Done!" // Final message
                                 }
-                            } else {
-                                showErrorAlert(message: ("Failed to generate encrypted image."))
+                            }
+                            
+                            
+                            DispatchQueue.global(qos: .userInitiated).async {
+                                
+                                if let imageData = encryptImage(image: selectedUIImage!, text: secretText, password: passwordText) {
+                                    // Save the raw data directly to a file in the Photos album
+                                    
+                                    // Create a temporary file URL
+                                    let temporaryDirectory = FileManager.default.temporaryDirectory
+                                    let temporaryFileURL = temporaryDirectory.appendingPathComponent(UUID().uuidString).appendingPathExtension("png")
+                                    
+                                    do {
+                                        // Write the data to the temporary file
+                                        try imageData.write(to: temporaryFileURL)
+                                        
+                                        // Use PHPhotoLibrary to save the file
+                                        PHPhotoLibrary.shared().performChanges({
+                                            // Create a request to save the image
+                                            PHAssetCreationRequest.forAsset().addResource(with: .photo, fileURL: temporaryFileURL, options: nil)
+                                        }, completionHandler: { success, error in
+                                            // Clean up the temporary file
+                                            try? FileManager.default.removeItem(at: temporaryFileURL)
+                                            
+                                            if success {
+                                                // Notify success on the main thread
+                                                DispatchQueue.main.async {
+                                                    showSuccessAlert(message: "Encrypted image saved to your gallery successfully!")
+                                                    secretText = ""
+                                                    passwordText = ""
+                                                }
+                                            } else if let error = error {
+                                                // Notify error on the main thread
+                                                DispatchQueue.main.async {
+                                                    showErrorAlert(message: "Failed to save image: \(error.localizedDescription)")
+                                                }
+                                            }
+                                        })
+                                    } catch {
+                                        showErrorAlert(message: "Failed to write image data: \(error.localizedDescription)")
+                                    }
+                                } else {
+                                    DispatchQueue.main.async {
+                                        showErrorAlert(message: "Failed to generate encrypted image.")
+                                    }
+                                }
+                            }
+                            DispatchQueue.main.async {
+                                encryptionFinished = true
+                                // Stop effect only if it has run long enough
+                                if counter >= maxCount {
+                                    timer.invalidate()
+                                    encryptionButtonText = "Done!"
+                                    secretText = ""
+                                }
                             }
                         }
+                        
+                       
+                        
+                        
                     }
                     .foregroundColor(Color.white)
                     .frame(width: 100, height: 50)
@@ -213,6 +250,7 @@ struct ContentView: View {
         
     }
     
+    
 }
 
 
@@ -232,3 +270,6 @@ extension UIApplication {
 #Preview {
     ContentView()
 }
+
+
+
